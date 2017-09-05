@@ -2,6 +2,8 @@ import React from 'react';
 import BookList from '../components/BookList.jsx';
 import Book from '../components/Book.jsx';
 
+import BookForm from './BookForm.jsx'
+
 class BookContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +30,9 @@ class BookContainer extends React.Component {
   render() {
     return (
       <div>
-        <h2>Book Container</h2>
+        <h2>Add Books </h2>
+        <BookForm onBookSubmit={this.handleBookSubmit} />
+        <h2>Available Books</h2>
         <BookList books={this.state.books} />
       </div>
     );

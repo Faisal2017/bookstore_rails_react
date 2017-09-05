@@ -11,11 +11,12 @@ class BookList extends React.Component {
   render() {
     var bookComponents = this.props.books.map(function(book) {
       return (
-        <Book key={book.id} author={book.author.name}> {book.title}{book.quantity} </Book>
+        <Book key={book.id} author={book.author.name}> 
+          <p>Title : {book.title}</p>
+          <p>Quantity : {book.quantity} </p>
+        </Book>
         )
     })
-
-
     return (
     <div>
     { bookComponents }

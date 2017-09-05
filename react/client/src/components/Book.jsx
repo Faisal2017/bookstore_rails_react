@@ -6,8 +6,8 @@ class Book extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <h4>{ this.props.author.name }</h4>
-      {this.props.children}
+        <h4>{ this.props.author }</h4>
+        {this.props.children}
       </div>
     );
   }
