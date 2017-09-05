@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904143445) do
+ActiveRecord::Schema.define(version: 20170905101453) do
 
   create_table "authors", force: :cascade do |t|
-    t.string   "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "books", force: :cascade do |t|
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 20170904143445) do
   add_index "books", ["genre_id"], name: "index_books_on_genre_id"
 
   create_table "genres", force: :cascade do |t|
-    t.string   "genre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
 end

@@ -9,12 +9,12 @@ Genre.delete_all()
 Author.delete_all()
 Book.delete_all()
 
-g1 = Genre.create({ genre: "fantasy" })
-g2 = Genre.create({ genre: "science fiction" })
+g1 = Genre.create({ name: "Fantasy" })
+g2 = Genre.create({ name: "Science Fiction" })
 
-a1 = Author.create({ author: "patrick rothfuss" })
-a2 = Author.create({ author: "david gunn" })
+a1 = Author.create({ name: "Patrick Rothfuss" })
+a2 = Author.create({ name: "David Gunn" })
 
-book1 = Book.create({ title: "the name of the wind", quantity: 10, genre_id: g1.id, author_id: a1.id})
+book1 = Book.create({ title: "The Name of the Wind", quantity: 10, genre_id: g1.id, author_id: a1.id})
 
-book2 = Book.create({ title: "death's head", quantity: 5, genre_id: g2.id, author_id: a2.id})
+book2 = Book.create({ title: "Death's Head", quantity: 5, genre_id: g2.id, author_id: a2.id})
