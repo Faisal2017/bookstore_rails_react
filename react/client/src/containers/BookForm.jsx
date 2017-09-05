@@ -32,12 +32,22 @@ class BookForm extends React.Component{
   }
 
   render() {
+    const authorOptions = this.props.bookDetails.map((book) => {
+      return (
+        <option key={book.author_id} value={book.author.name}> {book.author.name} </option>
+        )
+    })
+
     return(
-      <form className="book-form" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Author" value={this.state.author}
-          onChange={this.handleAuthorChange}/>
+      <form className="book-form" onSubmit={this.handleSubmit} method="POST">
+
+        <select type="text" placeholder="Author" value={this.state.author} >
+        { authorOptions }
+        </select>
+
         <input type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange}/>
-        <input type="submit" value="Post"/>
+        
+        <input type="submit" value="Add"/>
       </form>
     )
   }
