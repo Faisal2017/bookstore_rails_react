@@ -9,6 +9,8 @@ class BookContainer extends React.Component {
     super(props);
     this.state = {
       books: [],
+      genre: [],
+      author: []
     }
   }
 
@@ -27,16 +29,11 @@ class BookContainer extends React.Component {
     request.send();
   }
 
-  handleBookSubmit(book) {
-    const newBook = this.state.books.concat([book]);
-    this.setState({books: newBook});
-  }
-
   render() {
     return (
       <div>
         <h2>Add Books </h2>
-        <BookForm onBookSubmit={this.handleBookSubmit} bookDetails = {this.state.books} />
+        <BookForm bookDetails = {this.state.books} />
         <h2>Available Books</h2>
         <BookList books={this.state.books} />
       </div>

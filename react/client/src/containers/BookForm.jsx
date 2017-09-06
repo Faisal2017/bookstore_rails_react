@@ -3,32 +3,43 @@ import React from 'react';
 class BookForm extends React.Component{
   constructor(props) {
     super(props);
-    this.handleAuthorChange = this.handleAuthorChange.bind(this);
-    this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       author: '',
-      title: ''
+      title: '',
+      genre: '',
+      quantity: 0
     };
-  }
-
-  handleAuthorChange(event) {
-    this.setState({author: event.target.value});
-  }
-
-  handleTitleChange(event) {
-    this.setState({title: event.target.value});
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const author = this.state.author.trim();
-    const title = this.state.title.trim();
-    if (!title || !author) {
-      return;
+    let genre_id = document.getElementById("genre_select").value
+    let author_id = document.getElementById("author_select").value
+    let title = document.getElementById("title").value
+    let quantity = document.getElementById("quantity").value
+
+    let bookData = {
+      genre_id: genre_id,
+      author_id: author_id,
+      title: title,
+      quantity: quantity
     }
-    this.props.onBookSubmit({author: author, title: title});
-    this.setState({author: '', title: ''}); 
+    const url = 'http://localhost:3000/books';
+    const request = new XMLHttpRequest();
+    request.open('POST', url);
+    request.setRequestHeader("Content-Type", "application/json")
+    request.withCredentials = true
+
+    request.onload = () => {
+      if(request.status === 200) {
+        const jsonString = request.responseText;
+        const data = JSON.parse(jsonString);
+        console.log(data)
+      }
+    }
+    console.log(JSON.stringify(bookData))
+    request.send(JSON.stringify(bookData));
   }
 
   render() {
@@ -38,16 +49,28 @@ class BookForm extends React.Component{
         )
     })
 
+    const genreOptions = this.props.bookDetails.map((book) => {
+      return (
+        <option key={book.genre_id} value={book.genre.name}> {book.genre.name} </option>
+        )
+    })
+
     return(
       <form className="book-form" onSubmit={this.handleSubmit} method="POST">
 
-        <select type="text" placeholder="Author" value={this.state.author} >
+        <select id="author_select" type="text" placeholder="Author" >
         { authorOptions }
         </select>
 
-        <input type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange}/>
+        <select id="genre_select" type="text" placeholder="Genre">
+        { genreOptions }
+        </select>
+
+        <input id="title" type="text" placeholder="Title" />
+
+        <input id="quantity" type="number" placeholder="Quantity"/>
         
-        <input type="submit" value="Add"/>
+        <input type="submit" value="Post"/>
       </form>
     )
   }
