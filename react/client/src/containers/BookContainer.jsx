@@ -42,7 +42,7 @@ class BookContainer extends React.Component {
     }
     request2.send();
 
-    const url3 = 'http://localhost:3000/genres';
+    const url3 = 'http://localhost:3000/authors';
     const request3 = new XMLHttpRequest();
     request3.open('GET', url3);
 

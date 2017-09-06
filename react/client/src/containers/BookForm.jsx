@@ -43,17 +43,6 @@ class BookForm extends React.Component{
   }
 
   render() {
-    // const authorOptions = this.props.bookDetails.map((book) => {
-    //   return (
-    //     <option key={book.author_id} value={book.author.name}> {book.author.name} </option>
-    //     )
-    // })
-
-    // const genreOptions = this.props.bookDetails.map((book) => {
-    //   return (
-    //     <option key={book.genre_id} value={book.genre.name}> {book.genre.name} </option>
-    //     )
-    // })
 
     const authorOptions = this.props.authorDetails.map((author) => {
       console.log(author)
